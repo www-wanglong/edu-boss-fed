@@ -6,24 +6,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import request from '@/utils/request'
-
-request({
-  method: 'GET',
-  url: 'boss'
-}).then(res => console.log(res))
 
 export default Vue.extend({
-  data () {
-    return {
-      a: 1
-    }
-  },
-  methods: {
-    test () {
-      return ''
-    }
-  }
 })
 </script>
 <style lang="scss" scoped>
