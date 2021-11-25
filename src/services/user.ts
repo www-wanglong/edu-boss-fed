@@ -10,11 +10,26 @@ interface User {
   password: string
 }
 
+/**
+ * 登录接口
+ * @param data
+ * @returns
+ */
 export const login = (data: User): AxiosPromise => {
   return request({
     method: 'POST',
     url: '/front/user/login',
-    // headers: { 'content-type': 'application/x-www-form-urlencoded' },
     data: qs.stringify(data)
+  })
+}
+
+/**
+ * 获取用户信息
+ * @returns
+ */
+export const getUserInfo = (): AxiosPromise => {
+  return request({
+    method: 'GET',
+    url: '/front/user/getInfo'
   })
 }

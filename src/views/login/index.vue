@@ -3,7 +3,7 @@
     <el-form
       class="login-form"
       label-position="top"
-      ref="form"
+      ref="loginForm"
       :rules="rules"
       :model="form"
       label-width="80px"
@@ -56,7 +56,7 @@ export default Vue.extend({
     async onSubmit () {
       try {
         // 1. 验证表单
-        await (this.$refs.form as Form).validate()
+        await (this.$refs.loginForm as Form).validate()
         this.isLoginLoading = true
         // 2. 请求
         const { data } = await login(this.form)
@@ -66,7 +66,7 @@ export default Vue.extend({
         } else {
           // 4. 成功处理
           this.$store.commit('setUser', data.content)
-          this.$router.push('/')
+          this.$router.push(this.$route.query.redirect as string || '/')
           this.$message.success('登录成功！')
         }
       } catch (error) {
