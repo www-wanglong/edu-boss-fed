@@ -42,6 +42,7 @@ request.interceptors.request.use(config => {
 
 // 控制刷新的次数 只能一次
 let isRefreshing = false
+let requests: any = [] // 存储失败的接口
 
 // 响应拦截器
 request.interceptors.response.use(function (response) {
@@ -57,7 +58,7 @@ request.interceptors.response.use(function (response) {
         return Promise.reject(error)
       }
 
-      // 没有正在刷新
+      // 刷新token
       if (!isRefreshing) {
         isRefreshing = true
         return refreshToken().then(res => {
@@ -66,6 +67,9 @@ request.interceptors.response.use(function (response) {
           }
           store.commit('setUser', res.data.content)
           // 把失败请求重新发出
+          // 执行挂起的请求
+          requests.forEach(cb => cb())
+          requests = []
           return request(error.config)
         }).catch(err => {
           console.log('error', err)
@@ -76,7 +80,12 @@ request.interceptors.response.use(function (response) {
           isRefreshing = false
         })
       }
-      return
+      // 刷新状态下 把请求挂起 放到requests 中
+      return new Promise(resolve => {
+        requests.push(() => {
+          resolve(request(error.config))
+        })
+      })
     } else if (status === 403) {
       Message.error('没有权限')
     } else if (status === 404) {
