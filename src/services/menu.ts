@@ -12,7 +12,7 @@ export const createOrUpdateMenu = (data: any): AxiosPromise => {
   })
 }
 
-export const getEditMenuInfo = (id = -1): AxiosPromise => {
+export const getEditMenuInfo = (id: string | number = -1): AxiosPromise => {
   return request({
     method: 'GET',
     url: '/boss/menu/getEditMenuInfo',

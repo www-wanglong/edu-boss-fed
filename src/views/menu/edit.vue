@@ -1,7 +1,7 @@
 <template>
 <el-card class="box-card">
   <div>
-    <create-or-edit />
+    <create-or-edit :isEdit="true" />
   </div>
 
 </el-card>
@@ -13,7 +13,7 @@ import Vue from 'vue'
 import CreateOrEdit from './components/CreateOrEdit.vue'
 
 export default Vue.extend({
-  name: 'CreateMenu',
+  name: 'EditMenu',
   components: {
     CreateOrEdit
   },
