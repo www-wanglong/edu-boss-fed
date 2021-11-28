@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { createOrUpdateRole, getRoleById } from '@/services/role'
+import { createOrUpdate, getRoleById } from '@/services/role'
 export default Vue.extend({
   name: 'CreateOrEditRole',
   props: {
@@ -49,7 +49,7 @@ export default Vue.extend({
       this.role = data.data
     },
     async onSubmit () {
-      await createOrUpdateRole(this.role)
+      await createOrUpdate(this.role)
       this.$message.success('创建成功')
       this.$emit('success') // 父子组件通讯
     }

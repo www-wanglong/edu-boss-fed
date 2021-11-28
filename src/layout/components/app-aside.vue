@@ -27,9 +27,9 @@
         <span>资源管理</span>
       </el-menu-item>
     </el-submenu>
-    <el-menu-item index="2">
+    <el-menu-item index="user">
       <i class="el-icon-menu"></i>
-      <span slot="title">导航二</span>
+      <span slot="title">用户管理</span>
     </el-menu-item>
     <el-menu-item index="3" disabled>
       <i class="el-icon-document"></i>
