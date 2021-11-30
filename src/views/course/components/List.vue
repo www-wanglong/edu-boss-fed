@@ -3,7 +3,7 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>课程列表</span>
-       <el-button
+        <el-button
           style="float: right; margin-top: -5px"
           type="primary"
           @click="$router.push({
@@ -121,11 +121,21 @@ export default Vue.extend({
     },
 
     handleEdit (course: any) {
-      console.log(course)
+      this.$router.push({
+        name: 'course-edit',
+        params: {
+          courseId: course.id
+        }
+      })
     },
 
     handleContentManage (course: any) {
-      console.log(course)
+      this.$router.push({
+        name: 'course-section',
+        params: {
+          courseId: course.id
+        }
+      })
     }
   }
 })
